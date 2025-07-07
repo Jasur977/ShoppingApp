@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -6,19 +7,13 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        ArrayList<Products> products = FileManager.loadProductsFromFile("products.txt");
-
-
-
-
-        System.out.println("Available Products:");
-        for (int i = 0; i < products.size(); i++) {
-            System.out.print((i + 1) + ". ");
-            products.get(i).displayInfo();
-        }
         System.out.println("Enter product number to buy ");
 
-
+        List<Products> products = ProductDatabaseManager.readProducts();
+        System.out.println("Products From Database: ");
+        for (Products product : products) {
+            System.out.println(product.getProductName()+ " - $" + product.getProductPrice());
+        }
 // Customer "buys" the first product
 
 
@@ -50,7 +45,7 @@ public class Main {
         }
 
 
-        FileManager.saveProductsToFile(products, "products.txt");
+//        FileManager.saveProductsToFile(products, "products.txt");
     }
 
 }

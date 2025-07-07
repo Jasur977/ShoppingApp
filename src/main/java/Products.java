@@ -1,3 +1,5 @@
+
+
 public class Products {
 
 
@@ -12,5 +14,13 @@ public class Products {
 
     public void displayInfo(){
         System.out.println("Product: " + productName + ", Price: $" + productPrice);
+    }
+
+    public String getProductName() {
+        return productName;
+
+    }
+    public double getProductPrice() {
+        return productPrice;
     }
 }
