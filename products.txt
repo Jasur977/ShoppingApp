@@ -1,0 +1,4 @@
+Tablet,400.0
+Laptop,1500.0
+Sansui,1200.0
+Tablet,400.0

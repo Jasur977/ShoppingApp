@@ -18,5 +18,6 @@ A simple Java console-based Shopping App using Object-Oriented Programming (OOP)
 - Handle user authentication (Optional).
 - Improve payment options.
 
-## How To Run:
-1. Clone the repo:
+## 👤 About the Author
+Jasurbek Mamatkulov — Java developer passionate about OOP and clean code  
+[My GitHub Profile](https://github.com/Jasur977)

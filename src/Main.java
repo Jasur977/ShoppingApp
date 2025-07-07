@@ -6,30 +6,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        User admin = new Admin();
-        User customer = new Customer();
+        ArrayList<Products> products = FileManager.loadProductsFromFile("products.txt");
 
-        Products laptop = new Products("Laptop", 1500);
-        Products pc = new Products("Sansui", 1200);
-        ArrayList<User> users= new  ArrayList<>();
-        users.add(admin);
-        users.add(customer);
-
-        ArrayList<Products> products = new ArrayList<>();
-
-        ((Admin) users.get(0)).addProduct(products, new Products("Tablet", 400));
-        ((Admin) users.get(0)).removeProduct(products, 1);
-
-        products.add(laptop);
-        products.add(pc);
-
-        for (User user : users) {
-            if (user instanceof Admin) {
-                ((Admin) user).addProduct(products, new Products("Tablet", 400));
-            } else if (user instanceof Customer) {
-                ((Customer) user).buyProduct(products.get(0));  // Simulate buying the first product
-            }
-        }
 
 
 
@@ -72,6 +50,7 @@ public class Main {
         }
 
 
-
+        FileManager.saveProductsToFile(products, "products.txt");
     }
+
 }
