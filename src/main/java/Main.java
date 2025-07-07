@@ -8,7 +8,14 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter product number to buy ");
+        List<Products> newProducts = List.of(
+                new Products("Tablet", 400),
+                new Products("Smartphone", 999),
+                new Products("Headphones", 199),
+                new Products("Gaming Console", 499)
+        );
 
+        ProductDatabaseManager.insertMultipleProducts(newProducts);
         List<Products> products = ProductDatabaseManager.readProducts();
         System.out.println("Products From Database: ");
         for (Products product : products) {

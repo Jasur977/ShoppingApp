@@ -6,26 +6,32 @@ import org.bson.Document;
 import com.mongodb.client.FindIterable;
 import java.util.ArrayList;
 import java.util.List;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class ProductDatabaseManager{
-    public static void insertProduct(Products product) {
-        String uri = "mongodb+srv://admin:0000@jasur977.vqybjhb.mongodb.net/?retryWrites=true&w=majority&appName=Jasur977";
+    public static void insertMultipleProducts(List<Products> products) {
+        Dotenv dotenv = Dotenv.load();
+        String uri = dotenv.get("MONGODB_URI");
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("shoppingApp");
             MongoCollection<Document> collection = database.getCollection("products");
 
-            Document doc = new Document("productName", product.getProductName())
-                    .append("productPrice", product.getProductPrice());
-            collection.insertOne(doc);
+            List<Document> documents = new ArrayList<>();
+            for (Products product : products) {
+                Document doc = new Document("productName", product.getProductName())
+                        .append("productPrice", product.getProductPrice());
+                documents.add(doc);
+            }
 
-            System.out.println("✅ Product inserted into MongoDB!");
+            collection.insertMany(documents);
+            System.out.println("✅ Products inserted successfully!");
         }
     }
 
 
     public static List<Products> readProducts() {
-        String uri = "mongodb+srv://admin:0000@jasur977.vqybjhb.mongodb.net/?retryWrites=true&w=majority&appName=Jasur977";
-
+        Dotenv dotenv = Dotenv.load();
+        String uri = dotenv.get("MONGODB_URI");
         List<Products> products = new ArrayList<>();
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
